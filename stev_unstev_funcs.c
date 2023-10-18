@@ -18,7 +18,7 @@ int my_setenv(cmds_t *command)
 }
 
 /**
- * my_unsetenv - To remove an environmental variable from the system.
+ * myun_setenv - To remove an environmental variable from the system.
  * @command: Structure containing potential arguments.
  * Return: Always 0
  */

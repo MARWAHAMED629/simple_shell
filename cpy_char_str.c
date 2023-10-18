@@ -1,13 +1,14 @@
 #include "shell.h"
 
 /**
- * dupler_ch - Copying certain characters from a text string.
- * @p_tostr:it the  PATH  of the string
- * @began: began the index
- * @end: end the index
+ * dup_chars - Copy certain characters from a text string.
+ * @p_tostr: The source string.
+ * @began: The starting index.
+ * @end: The ending index.
  *
- * Return: pointer to new buffer
+ * Return: Pointer to a new buffer.
  */
+
 char *dup_chars(char *p_tostr, int began, int end)
 {
 	static char buf[1024];

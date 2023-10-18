@@ -1,11 +1,13 @@
 #include "shell.h"
 
 /**
- * my_strcpy : it copy strings.
- * @cps1:one  copy string string 1 to copy.
- * @cps2:two copy string.
- * Return: the pointer of string 1
+ * my_strcpy - Copy one string to another.
+ * @cps1: The destination string to copy to.
+ * @cps2: The source string to copy from.
+ *
+ * Return: The pointer to the destination string (cps1).
  */
+
 char *my_strcpy(char *cps1, char *cps2)
 {
 	int z = 0;

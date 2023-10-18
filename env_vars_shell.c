@@ -1,6 +1,7 @@
 #include "shell.h"
 /**
- * _mysetenv - Set up a new environmental variable or modify an existing.
+ * _mysetenv - Set up a new environmental variable or modify an existing
+ * @command: a pramtere of the structures
  * @v: The environmental variable name.
  * @i:The value to set for the environmental variable.
  *  Return: Always 0
