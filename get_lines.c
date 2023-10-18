@@ -129,7 +129,7 @@ my_putchar(BUF_FLUSH);
 r = in_buffer(command, &buf, &len);
 if (r == -1)
 return (-1);
-if (len)     /* a command left in the chain buffer */
+if (len)
 {
 j = i;           /* init new iterator to currents buffers  position */
 p = buf + i;     /* got pointer for the return */

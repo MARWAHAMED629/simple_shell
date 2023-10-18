@@ -21,13 +21,9 @@ _print_in(command->argv[1]);
 _print_char('\n');
 return (1);
 }
-else
-{
-exit(chkexit);
+command->error_v = error_atoi(command->argv[1]);
+return (-2);
 }
-}
-else
-{
-exit(0);
-}
+command->error_v = -1;
+return (-2);
 }
