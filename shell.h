@@ -196,7 +196,7 @@ size_t lenght_list(const lists_t *);
 int chain_deli(cmds_t *, char *, size_t *);
 void chk_chain(cmds_t *, char *, size_t *, size_t, size_t);
 char **list_str(lists_t *);
-size_t printing_mylist(const lists_t*);
+size_t printing_mylist(const lists_t *);
 lists_t *nd_start_wth(lists_t *, char *, char);
 ssize_t get_index_node(lists_t *, lists_t *);
 
