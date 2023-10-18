@@ -36,45 +36,43 @@ int w_history(cmds_t *command)
  */
 int r_history(cmds_t *command)
 {
-	int d, last = 0, lineindex = 0;
-	ssize_t fd, rdlenght, filesize = 0;
-	struct stat st;
-	char *buff = NULL, *f_name = got_history_file(command);
-
-	if (!f_name)
-		return (0);
-
-	fd = open(f_name, O_RDONLY);
-	free(f_name);
-	if (fd == -1)
-		return (0);
-	if (!fstat(fd, &st))
-		  filesize = st.st_size;
-	if (filesize < 2)
-		return (0);
-	buff = malloc(sizeof(char) * (filesize + 1));
-	if (!buff)
-		return (0);
-	rdlenght = read(fd, buff, filesize);
-	buff[filesize] = 0;
-	if (rdlenght <= 0)
-		return (free(buff), 0);
-	close(fd);
-	for (d = 0; d < filesize; d++)
-		if (buff[d] == '\n')
-		{
-			buff[d] = 0;
-			builder_history_l(command, buff + last, lineindex++);
-			last = d + 1;
-		}
-	if (last != d)
-		builder_history_l(command, buff + last, lineindex++);
-	free(buff);
-	command->history_cline = lineindex;
-	while (command->history_cline-- >= HIST_MAX)
-		remove_i_node(&(command->cmd_history), 0);
-	renum_history(command);
-	return (command->history_cline);
+int d, last = 0, lineindex = 0;
+ssize_t fd, rdlenght, filesize = 0;
+struct stat st;
+char *buff = NULL, *f_name = got_history_file(command);
+if (!f_name)
+return (0);
+fd = open(f_name, O_RDONLY);
+free(f_name);
+if (fd == -1)
+return (0);
+if (!fstat(fd, &st))
+filesize = st.st_size;
+if (filesize < 2)
+return (0);
+buff = malloc(sizeof(char) * (filesize + 1));
+if (!buff)
+return (0);
+rdlenght = read(fd, buff, filesize);
+buff[filesize] = 0;
+if (rdlenght <= 0)
+return (free(buff), 0);
+close(fd);
+for (d = 0; d < filesize; d++)
+if (buff[d] == '\n')
+{
+buff[d] = 0;
+builder_history_l(command, buff + last, lineindex++);
+last = d + 1;
+}
+if (last != d)
+builder_history_l(command, buff + last, lineindex++);
+free(buff);
+command->history_cline = lineindex;
+while (command->history_cline-- >= HIST_MAX)
+remove_i_node(&(command->cmd_history), 0);
+renum_history(command);
+return (command->history_cline);
 }
 
 /**

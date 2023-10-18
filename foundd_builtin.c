@@ -87,32 +87,31 @@ void found_cmds(cmds_t *command)
  */
 void fork_command(cmds_t *command)
 {
-	pid_t child_pid;
-
-	child_pid = fork();
-	if (child_pid == -1)
-	{
-		perror("Error:");
-		return;
-	}
-	if (child_pid == 0)
-	{
-		if (execve(command->cmd_path, command->argv, get_myenviroment(command)) == -1)
-		{
-			frees_cmds(command, 1);
-			if (errno == EACCES)
-				exit(126);
-			exit(1);
-		}
-	}
-	else
-	{
-		wait(&(command->last_statue));
-		if (WIFEXITED(command->last_statue))
-		{
-			command->last_statue = WEXITSTATUS(command->last_statue);
-			if (command->last_statue == 126)
-				err_print(command, "Permission denied\n");
-		}
-	}
+pid_t child_pid;
+child_pid = fork();
+if (child_pid == -1)
+{
+perror("Error:");
+return;
+}
+if (child_pid == 0)
+{
+if (execve(command->cmd_path, command->argv, get_myenviroment(command)) == -1)
+{
+frees_cmds(command, 1);
+if (errno == EACCES)
+exit(126);
+exit(1);
+}
+}
+else
+{
+wait(&(command->last_statue));
+if (WIFEXITED(command->last_statue))
+{
+command->last_statue = WEXITSTATUS(command->last_statue);
+if (command->last_statue == 126)
+err_print(command, "Permission denied\n");
+}
+}
 }

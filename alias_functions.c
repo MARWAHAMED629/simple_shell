@@ -11,19 +11,18 @@
  */
 int alias_print(lists_t *n)
 {
-        char *b = NULL, *z = NULL;
-
-        if (n)
-        {
-                b = _stchr(n->s, '=');
-                for (z = n->s; z <= b; z++)
-                        my_putchar(*z);
-                my_putchar('\'');
-                _puts(b + 1);
-                _puts("'\n");
-                return (0);
-        }
-        return (1);
+char *b = NULL, *z = NULL;
+if (n)
+{
+b = _stchr(n->s, '=');
+for (z = n->s; z <= b; z++)
+my_putchar(*z);
+my_putchar('\'');
+_puts(b + 1);
+_puts("'\n");
+return (0);
+}
+return (1);
 }
 
 
@@ -40,18 +39,17 @@ int alias_print(lists_t *n)
  */
 int un_alias(cmds_t *command, char *s)
 {
-        char *p, c;
-        int r;
-
-        p = _stchr(s, '=');
-        if (!p)
-                return (1);
-        c = *p;
-        *p = 0;
-        r =  remove_i_node(&(command->alias),
-        get_index_node(command->alias, nd_start_wth(command->alias, s, -1)));
-        *p = c;
-        return (r);
+char *p, c;
+int r;
+p = _stchr(s, '=');
+if (!p)
+return (1);
+c = *p;
+*p = 0;
+r =  remove_i_node(&(command->alias),
+get_index_node(command->alias, nd_start_wth(command->alias, s, -1)));
+*p = c;
+return (r);
 }
 
 
@@ -65,16 +63,14 @@ int un_alias(cmds_t *command, char *s)
  */
 int run_alias(cmds_t *command, char *string)
 {
-        char *pointer;
-
-        pointer = _stchr(string, '=');
-        if (!pointer)
-                return (1);
-        if (!*++pointer)
-                return (un_alias(command, string));
-
-        un_alias(command, string);
-        return (add_end_node(&(command->alias), string, 0) == NULL);
+char *pointer;
+pointer = _stchr(string, '=');
+if (!pointer)
+return (1);
+if (!*++pointer)
+return (un_alias(command, string));
+un_alias(command, string);
+return (add_end_node(&(command->alias), string, 0) == NULL);
 }
 
 
@@ -88,30 +84,26 @@ int run_alias(cmds_t *command, char *string)
  */
 int my_alias(cmds_t *command)
 {
-	int z = 0;
-	char *b = NULL;
-	lists_t *node = NULL;
-
-	if (command->argcount == 1)
-	{
-		node = command->alias;
-		while (node)
-		{
-			alias_print(node);
-			node = node->next;
-		}
-		return (0);
-	}
-	for (z = 1; command->argv[z]; z++)
-	{
-		b = _stchr(command->argv[z], '=');
-		if (b)
-			run_alias(command, command->argv[z]);
-		else
-			alias_print(nd_start_wth(command->alias, command->argv[z], '='));
-	}
-
-	return (0);
+int z = 0;
+char *b = NULL;
+lists_t *node = NULL;
+if (command->argcount == 1)
+{
+node = command->alias;
+while (node)
+{
+alias_print(node);
+node = node->next;
 }
-
-
+return (0);
+}
+for (z = 1; command->argv[z]; z++)
+{
+b = _stchr(command->argv[z], '=');
+if (b)
+run_alias(command, command->argv[z]);
+else
+alias_print(nd_start_wth(command->alias, command->argv[z], '='));
+}
+return (0);
+}

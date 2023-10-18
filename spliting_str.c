@@ -56,39 +56,38 @@ char **splite_str(char *st, char  *del)
  */
 char **splite_str2(char *string, char del)
 {
-	int x, y, z, n, countwd = 0;
-	char **st;
-
-	if (string == NULL || string[0] == 0)
-		return (NULL);
-	for (x = 0; string[x] != '\0'; x++)
-		if ((string[x] != del && string[x + 1] == del) ||
-		    (string[x] != del && !string[x + 1]) || string[x + 1] == del)
-		countwd++;
-	if (countwd == 0)
-		return (NULL);
-	st = malloc((1 + countwd) * sizeof(char *));
-	if (!st)
-		return (NULL);
-	for (x = 0, y = 0; y < countwd; y++)
-	{
-		while (string[x] == del && string[x] != del)
-			x++;
-		z = 0;
-		while (string[x + z] != del && string[x + z] && string[x + z] != del)
-		        z++;
-		st[y] = malloc((z + 1) * sizeof(char));
-		if (!st[y])
-		{
-			for (z = 0; z < y; z++)
-				free(st[z]);
-			free(st);
-			return (NULL);
-		}
-		for (n = 0; n < z; n++)
-			st[y][n] = string[x++];
-		st[y][n] = 0;
-	}
-	st[y] = NULL;
-	return (st);
+int x, y, z, n, countwd = 0;
+char **st;
+if (string == NULL || string[0] == 0)
+return (NULL);
+for (x = 0; string[x] != '\0'; x++)
+if ((string[x] != del && string[x + 1] == del) ||
+(string[x] != del && !string[x + 1]) || string[x + 1] == del)
+countwd++;
+if (countwd == 0)
+return (NULL);
+st = malloc((1 + countwd)*sizeof(char *));
+if (!st)
+return (NULL);
+for (x = 0, y = 0; y < countwd; y++)
+{
+while (string[x] == del && string[x] != del)
+x++;
+z = 0;
+while (string[x + z] != del && string[x + z] && string[x + z] != del)
+z++;
+st[y] = malloc((z + 1) * sizeof(char));
+if (!st[y])
+{
+for (z = 0; z < y; z++)
+free(st[z]);
+free(st);
+return (NULL);
+}
+for (n = 0; n < z; n++)
+st[y][n] = string[x++];
+st[y][n] = 0;
+}
+st[y] = NULL;
+return (st);
 }
