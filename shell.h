@@ -54,6 +54,17 @@ typedef struct lists_s
 	struct lists_s	*next;
 } lists_t;
 
+
+
+
+
+
+
+
+
+
+
+
 typedef struct cmmandInfo
 {
 	unsigned int line_c;

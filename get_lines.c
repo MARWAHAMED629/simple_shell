@@ -121,7 +121,7 @@ my_putchar(BUF_FLUSH);
  */
 ssize_t input_user(cmds_t *command)
 {
-static char *buf;
+static char *buf;     /* command chain buffer */
 static size_t i, j, len;
 ssize_t r = 0;
 char **buf_p = &(command->arg), *p;
@@ -129,26 +129,26 @@ my_putchar(BUF_FLUSH);
 r = in_buffer(command, &buf, &len);
 if (r == -1)
 return (-1);
-if (len)
+if (len)     /* a command left in the chain buffer */
 {
-j = i;
-p = buf + i;
+j = i;           /* init new iterator to currents buffers  position */
+p = buf + i;     /* got pointer for the return */
 chk_chain(command, buf, &j, i, len);
-while (j < len)
+while (j < len)  /* iterate  semicolon or the end */
 {
 if (chain_deli(command, buf, &j))
 break;
 j++;
-}
+}     /* increment past null ';'' */
 i = j + 1;
 if (i >= len)
 {
-i = len = 0;
+i = len = 0;                      /* Reset position, length */
 command->command_buff_types = CMD_NORM;
 }
-*buf_p = p;
-return (my_strlen(p));
+*buf_p = p;         /* pass back pointer to current command position */
+return (my_strlen(p));  /* return of the length on current command */
 }
-*buf_p = buf;
-return (r);
+*buf_p = buf;               /*Not a chain, pass back buf from input_user()*/
+return (r);                 /* Return length buffers from input_user() */
 }
