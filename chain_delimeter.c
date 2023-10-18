@@ -24,9 +24,9 @@ int chain_deli(cmds_t *command, char *buff, size_t *p)
 		z++;
 		command->command_buff_types = CMD_AND;
 	}
-	else if (buff[z] == ';')
+	else if (buff[z] == ';')    /* found the end in this command */
 	{
-		buff[z] = 0;
+		buff[z] = 0;    /* replaced semicolon to  null */
 		command->command_buff_types = CMD_CHAIN;
 	}
 	else

@@ -58,6 +58,16 @@ typedef struct lists_s
 	char      *s;
 	struct lists_s	*next;
 } lists_t;
+
+
+
+
+
+
+
+
+
+
 /**
  * struct cmmandInfo - A structure to hold command-related information.
  * @line_c: Line count.
@@ -79,6 +89,7 @@ typedef struct lists_s
  * @readfiledes: File descriptor for reading.
  * @history_cline: Command history line.
  */
+
 typedef struct cmmandInfo
 {
 	unsigned int line_c;
@@ -106,13 +117,23 @@ typedef struct cmmandInfo
 
 #define PIPELINE_MAX_COMMANDS 2
 #define MAX_COMMANDS 10
+
+/**
+ * INFO_INIT - Macro to initialize a `cmmandInfo` structure
+ */
+
 #define CMD_INIT \
 {0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
 
 /**
- * INFO_INIT - Macro to initialize a `cmmandInfo` structure.
+ * struct built - A structure for built-in
+ * commands and their associated functions.
+ *
+ * @t: The string representing the built-in command.
+ * @function: A pointer to the function that handles the built-in command.
  */
+
 
 typedef struct built
 {
