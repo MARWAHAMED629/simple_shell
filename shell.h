@@ -46,13 +46,19 @@
 
 
 
-
+/**
+ * struct lists_s - A singly linked list for storing integer and string pairs.
+ * @n: An integer value.
+ * @s: A string value.
+ * @next: A pointer to the next node.
+ */
 typedef struct lists_s
 {
 	int        n;
 	char      *s;
 	struct lists_s	*next;
 } lists_t;
+<<<<<<< HEAD
 
 
 
@@ -65,6 +71,29 @@ typedef struct lists_s
 
 
 
+=======
+/**
+ * struct cmmandInfo - A structure to hold command-related information.
+ * @line_c: Line count.
+ * @arg: A string representing an argument.
+ * @argv: An array of strings representing arguments.
+ * @cmd_path: The path to the command.
+ * @argcount: Argument count.
+ * @error_v: Error value.
+ * @linec_f: Line count flag.
+ * @filesn: File name string.
+ * @env: Pointer to a linked list for environment variables.
+ * @cmd_history: Pointer to a linked list for command history.
+ * @alias: Pointer to a linked list for aliases.
+ * @environ: An array of strings representing environment variables.
+ * @env_change_f: Environment change flag.
+ * @last_statue: Last status code.
+ * @command_buff: An array of strings for command buffer.
+ * @command_buff_types: Command buffer types.
+ * @readfiledes: File descriptor for reading.
+ * @history_cline: Command history line.
+ */
+>>>>>>> 7d01746533941e4bf5f8dd13da28710f7bdb0365
 typedef struct cmmandInfo
 {
 	unsigned int line_c;
@@ -96,6 +125,9 @@ typedef struct cmmandInfo
 {0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 	0, 0, 0}
 
+/**
+ * INFO_INIT - Macro to initialize a `cmmandInfo` structure.
+ */
 
 typedef struct built
 {
@@ -179,7 +211,7 @@ size_t lenght_list(const lists_t *);
 int chain_deli(cmds_t *, char *, size_t *);
 void chk_chain(cmds_t *, char *, size_t *, size_t, size_t);
 char **list_str(lists_t *);
-size_t printing_mylist(const lists_t*);
+size_t printing_mylist(const lists_t *);
 lists_t *nd_start_wth(lists_t *, char *, char);
 ssize_t get_index_node(lists_t *, lists_t *);
 
