@@ -63,7 +63,27 @@ typedef struct lists_s
 
 
 
-
+/**
+ * struct cmmandInfo - A structure to hold command-related information.
+ * @line_c: Line count.
+ * @arg: A string representing an argument.
+ * @argv: An array of strings representing arguments.
+ * @cmd_path: The path to the command.
+ * @argcount: Argument count.
+ * @error_v: Error value.
+ * @linec_f: Line count flag.
+ * @filesn: File name string.
+ * @env: Pointer to a linked list for environment variables.
+ * @cmd_history: Pointer to a linked list for command history.
+ * @alias: Pointer to a linked list for aliases.
+ * @environ: An array of strings representing environment variables.
+ * @env_change_f: Environment change flag.
+ * @last_statue: Last status code.
+ * @command_buff: An array of strings for command buffer.
+ * @command_buff_types: Command buffer types.
+ * @readfiledes: File descriptor for reading.
+ * @history_cline: Command history line.
+ */
 
 
 
