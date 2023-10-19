@@ -1,4 +1,4 @@
-#include "shell.h"
+ #include "shell.h"
 
 /**
  * _my_exit - exit from the shell
@@ -9,21 +9,23 @@
  */
 int _my_exit(cmds_t *command)
 {
-int chkexit;
 if (command->argv[1])
 {
-chkexit = error_atoi(command->argv[1]);
-if (chkexit == -1)
+char *endptr;
+long exit_status = strtol(command->argv[1], &endptr, 10);
+if (*endptr != '\0' || exit_status < INT_MIN || exit_status > INT_MAX)
 {
 command->last_statue = 2;
-err_print (command, "Illegal number: ");
+err_print(command, "Illegal number: ");
 _print_in(command->argv[1]);
 _print_char('\n');
 return (1);
 }
-command->error_v = error_atoi(command->argv[1]);
-return (-2);
+command->error_v = (int)exit_status;
 }
-command->error_v = -1;
+else
+{
+command->error_v = 0;
+}
 return (-2);
 }
