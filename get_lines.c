@@ -17,8 +17,11 @@ if (!*lenght)
 free(*b);
 *b = NULL;
 signal(SIGINT, sigint_handler);
+#if USE_GETLINE
 x = getline(b, &lenght_b, stdin);
+#else
 x = get_line(command, b, &lenght_b);
+#endif
 if (x > 0)
 {
 if ((*b)[x - 1] == '\n')
